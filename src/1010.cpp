@@ -1,4 +1,24 @@
-;
+#include <stdio.h>
+#include <iostream>
+
+
+using namespace std;
+
+int n,m,t;
+char map[7][7];
+
+void dfs(int x,int y)
+{
+    if(t == 0){                    // 时间到了，不再继续深入 
+        if(map[x][y] == 'D')    // wow，我们到出口了 
+            throw 1;
+    }else if(map[x][y] == '.'){    // 恩可以访问 
+        map[x][y] = 'g';        // 把颜色涂成灰色 
+        t--;
+        if(y>0)
+            dfs(x,y-1);
+        if(y+1<m)
+            dfs(x,y+1);
         if(x>0)
             dfs(x-1,y);
         if(x+1<n)
